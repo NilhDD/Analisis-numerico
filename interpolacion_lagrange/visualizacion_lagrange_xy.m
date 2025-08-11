@@ -1,4 +1,4 @@
-function visualizacion_lagrange(x, y)
+function visualizacion_lagrange_xy(x, y)
     scatter(x, y, 'filled');
     hold on;
     
@@ -8,8 +8,7 @@ function visualizacion_lagrange(x, y)
     p = @(x) 0;
 
     for i = 1:length(coefi)
-        add = @(x) coefi(i).*x.^(n-i);
-        p = @(x) p(x) + add(x);
+        p = @(x) p(x) + coefi(i).*x.^(n-i);
     end
 
     disp(coefi);
