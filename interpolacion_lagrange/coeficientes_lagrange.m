@@ -1,5 +1,5 @@
 function P = coeficientes_lagrange(x, y)
-    % Se calculan los coeficientes del polinomio de interpolacion de Lagrange.
+    %se calculan los coeficientes del polinomio de interpolacion de Lagrange.
     %x, y son vectores de igual tamaño donde cada punto es la pareja (xi,yi)
     %P es un vector fila (1xn) que contiene los coeficientes del polinomio
     %ordenados de la potencia más alta a la más baja.
