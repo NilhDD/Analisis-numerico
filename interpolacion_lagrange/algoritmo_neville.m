@@ -1,4 +1,4 @@
-function value = algoritmo_neville(xa, ya, x, n)
+function tabla = algoritmo_neville(xa, ya, x, n)
     %Se calcula la Pn(x) donde Pn es el polinomio interpolador de Lagrange
     %para los puntos (xa, ya) ya que directamente calcular el polinomio
     %y evaluar tiene mayor complejidad
@@ -23,6 +23,4 @@ function value = algoritmo_neville(xa, ya, x, n)
             tabla(i,m) = ((x-xa(i+m-1))*tabla(i,m-1)-(x-xa(i))*tabla(i+1,m-1))/(xa(i)-xa(i+m-1));
         end
     end
-
-    disp(tabla);
 end
