@@ -1,9 +1,6 @@
-function visualizacion_lagrange_xy(x, y)
-    scatter(x, y, 'filled');
-    hold on;
-    
-    coefi = coeficientes_lagrange(x, y);
-    n = length(x);
+function visualizacion_lagrange_xy(xs, ys)   
+    coefi = coeficientes_lagrange(xs, ys);
+    n = length(xs);
 
     p = @(x) 0;
 
@@ -13,9 +10,16 @@ function visualizacion_lagrange_xy(x, y)
 
     disp(coefi);
 
-    x = min(x)-0.5 : 1e-3 : max(x)+0.5;
+    x = min(xs)-0.5 : 1e-3 : max(xs)+0.5;
     y = p(x);
 
+    figure;
     plot(x, y);
+    hold on;
+    scatter(xs, ys, 'filled');
+    legend('Interpolacion','Puntos dados', 'Location', 'best');
     grid on;
+    xlabel('x');
+    ylabel('y');
+    hold off;
 end

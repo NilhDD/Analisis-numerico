@@ -1,9 +1,6 @@
-function visualizacion_lagrange_fx(x, f)
-    scatter(x, f(x), 'filled');
-    hold on;
-    
-    coefi = coeficientes_lagrange(x, f(x));
-    n = length(x);
+function visualizacion_lagrange_fx(xs, f)    
+    coefi = coeficientes_lagrange(xs, f(xs));
+    n = length(xs);
 
     p = @(x) 0;
 
@@ -13,10 +10,17 @@ function visualizacion_lagrange_fx(x, f)
 
     disp(coefi);
 
-    x = min(x)-0.5 : 1e-3 : max(x)+0.5;
+    x = min(xs)-0.5 : 1e-3 : max(xs)+0.5;
 
+    figure;
     plot(x, f(x), '--');
+    hold on;
     plot(x, p(x));
-    legend('Puntos dados', 'Funcion', 'Interpolacion', 'Location', 'best');
+    scatter(xs, f(xs), 'filled');
+    legend('Funcion', 'Interpolacion','Puntos dados', 'Location', 'best');
     grid on;
+    title('Interpolacion de Lagrange');
+    xlabel('x');
+    ylabel('f(x)');
+    hold off;
 end
