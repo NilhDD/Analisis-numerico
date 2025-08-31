@@ -1,13 +1,13 @@
-function visualizacion_splines(x, y)
-    spline = function_cubic_spline(x, y);
+function visualizacion_splines(xs, ys)
+    spline = function_cubic_spline(xs, ys);
 
-    x = min(x)-0.5 : 1e-3 : max(x)+0.5;
+    x = min(xs)-0.5 : 1e-3 : max(xs)+0.5;
     y = spline(x);
 
     figure;
     plot(x, y);
     hold on;
-    scatter(x, y, 'filled');
+    scatter(xs, ys, 'filled');
     legend('Interpolacion','Puntos dados', 'Location', 'best');
     grid on;
     hold off;
