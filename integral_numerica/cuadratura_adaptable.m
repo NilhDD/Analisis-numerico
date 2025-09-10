@@ -29,11 +29,12 @@ function [sizes, ints] = cuadratura_adaptable(f, a, b, TOL, n)
             ai = bi;
             bi = bi + sizes(count);
 
-            depth = 1;
+            depth = depth - 1;
         else
             bi = med;
             sizes(count) = sizes(count)/2;
-            sizes = [sizes(1:count), sizes(count), sizes(count+1:length(sizes))];
+            sizes = [sizes(1:count), sizes(count), ...
+                sizes(count+1:length(sizes))];
             depth = depth + 1;
         end
     end
