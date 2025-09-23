@@ -1,4 +1,4 @@
-function [ts,yts] = metodo_euler(f, alpha, a, b, n)
+function [ts,yts] = metodo_k4(f, alpha, a, b, n)
     %se usa para las ecuaciones diferenciales de la forma
     % y'=f(t,y), y(a)=alpha
     %se debe de cumplir que f cumpla la condicion de Lipschitz
@@ -17,9 +17,14 @@ function [ts,yts] = metodo_euler(f, alpha, a, b, n)
 
     for i = 2:n+1
         ti = a + (i-2)*h;
-        yi = yts(i-1);
+        wi = yts(i-1);
         ts(i) = ti+h;
-        yts(i) = yi + h*f(ti, yi);
+
+        k1 = h*f(ti,wi);
+        k2 = h*f(ti+h/2, wi+1/2*k1);
+        k3 = h*f(ti+h/2, wi+1/2*k2);
+        k4 = h*f(ti+h, wi+k3);
+
+        yts(i) = wi + 1/6 * (k1+2*k2+2*k3+k4);
     end
 end
-
