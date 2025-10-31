@@ -1,6 +1,8 @@
 function x = metodo_jacobi(A, b, TOL, N)
-    %A es una matriz cuadrada con inversa
+    %A es una matriz cuadrada con inversa y numero espectral < 1
     %b es un vector columna
+    %TOL: tolerancia del metodo
+    %N: numero de iteraciones maximas
 
     n = length(A);
     x0 = zeros(n,1);

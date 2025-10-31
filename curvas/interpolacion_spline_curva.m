@@ -1,7 +1,8 @@
-function [Sx, Sy] = interpolacion_spline_curva(xs, ys)
-    xs = [xs, xs(1)];
-    ys = [ys, ys(1)];
-    
+function [Sx, Sy] = interpolacion_spline_curva(xs, ys, cerrada)
+    if cerrada
+        xs = [xs, xs(1)];
+        ys = [ys, ys(1)];
+    end
     %normalizar entre 0 y 1
     t = [0; cumsum(sqrt(diff(xs(:)).^2 + diff(ys(:)).^2))];
     t = t / t(end);
