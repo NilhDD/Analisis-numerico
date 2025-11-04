@@ -1,6 +1,6 @@
 function x = metodo_gauss_seidel(A, b, TOL, N)
-    %A es una matriz cuadrada con inversa y numero espectral < 1
-    %b es un vector columna
+    %A: es una matriz cuadrada con inversa y numero espectral < 1
+    %b: es un vector columna
     %TOL: tolerancia del metodo
     %N: numero de iteraciones maximas
 
