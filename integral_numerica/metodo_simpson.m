@@ -4,6 +4,10 @@ function value = metodo_simpson(f, a, b, n)
     %el metodo de Simpson compuesto
 
     %inicializar las variables
+    if mod(n,2) ~= 0
+        n = n + 1;
+    end
+
     h = (b - a) / n;
     xl1 = 0;
     xl2 = 0;

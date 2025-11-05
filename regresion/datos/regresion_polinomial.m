@@ -1,9 +1,9 @@
-function [coef, rl, error] = regresion_polinomial(x, y, N)
+function [coef, fun, error] = regresion_polinomial(x, y, N)
     %x: vector columna de valores x
     %y: vector columna de valores y
     %N: grado del polinomio
 
-    %rl: la funcion de la forma
+    %fun: la funcion de la forma
     %y = a0 + a1x + a2x^2 + ... + anx^n
     %coef: vector columna con los coeficientes a0, a1, ..., an
     %error: error estandar de la regresion
@@ -39,11 +39,11 @@ function [coef, rl, error] = regresion_polinomial(x, y, N)
     
 
     coef = solution_LU(matriz, b);
-    rl = @(x) coef(1);
+    fun = @(x) coef(1);
 
     for i = 1:n
-        rl = @(x) rl(x) + coef(i+1)*x.^i;
+        fun = @(x) fun(x) + coef(i+1)*x.^i;
     end
 
-    error = sqrt(sum((y - rl(x)).^2) / (m - n - 1));
+    error = sqrt(sum((y - fun(x)).^2) / (m - n - 1));
 end
