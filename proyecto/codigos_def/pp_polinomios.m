@@ -1,12 +1,8 @@
 function out = pp_polinomios(pp_array)
-    % pp_array puede ser:
-    %   - un pp-form único
-    %   - un cell array {pp1, pp2, ...}
+    %pp_array: array (o un solo elemento) de pp-form {pp1, pp2, ...}
 
-    % Asegurar formato cell
-    if ~iscell(pp_array)
-        pp_array = {pp_array};
-    end
+    %out:       array de objetos con la informacion de polinomio,
+    %intervalo, funcion, pp y texto
 
     out = cell(size(pp_array));
 
@@ -18,7 +14,7 @@ function out = pp_polinomios(pp_array)
         end
 
         breaks = pp.breaks;
-        coefs  = pp.coefs;   % cada fila es un polinomio: [a b c d]
+        coefs  = pp.coefs;
         np     = pp.pieces;
 
         syms x real
@@ -34,14 +30,13 @@ function out = pp_polinomios(pp_array)
             x0 = breaks(i);
             x1 = breaks(i+1);
 
-            % Polinomio simbólico en el intervalo [x0, x1]
+            %polinomio simbolico en el intervalo [x0, x1]
             poly_i = a*(x - x0)^3 + b*(x - x0)^2 + c*(x - x0) + d;
 
             expr_list{i} = simplify(poly_i);
             intervals{i} = [x0, x1];
         end
-
-        % Función evaluable (equivalente a @(u) ppval(pp,u))
+        
         f_handle = @(u) ppval(pp, u);
 
         

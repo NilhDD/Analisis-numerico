@@ -49,20 +49,18 @@ function selected_pts = seleccionar_puntos_shift(data)
     %marcador de cuales son data y cuáles control
     is_data = [true(DATA_N,1) ; false(CTRL_N,1)];
 
-    % ----------------------------------------
-    % Crear figura
-    % ----------------------------------------
+    %figura
     fig = figure('Name','Selector 3D');
     ax = axes('Parent',fig); hold on; grid on; axis equal
 
-    % Graficar data (azul) y control (verde)
+    % Graficar data y contrl
     scatter3(ax, data(:,1), data(:,2), data(:,3), 40, 'b', 'filled');
     scatter3(ax, control_pts(:,1), control_pts(:,2), control_pts(:,3), ...
              80, 'g', 'filled', 'MarkerEdgeColor','k');
 
     title(ax, 'SHIFT=seleccionar  |  CTRL=region  |  ENTER=terminar');
 
-    % Para permitir click en el espacio
+    %permitir click en el espacio
     set(ax,'PickableParts','all','HitTest','on')
     set(fig,'WindowButtonDownFcn', @clickCallback);
 
@@ -73,17 +71,16 @@ function selected_pts = seleccionar_puntos_shift(data)
     selected_pts = [];
     temp_clicks = [];
 
-    % Esperar ENTER
+    %esperar ENTER
     waitfor(fig,'CurrentCharacter',char(13));
 
-    % Filtrar para que NO entren puntos de control
+    %filtrar para que NO entren puntos de control
     selected_pts = selected_pts(is_data(selected_idx), :);
 
     close(fig)
 
-    % ==========================================
+
     % CALLBACK DE CLIC
-    % ==========================================
     function clickCallback(~,~)
         sel = get(fig,'SelectionType');
 
@@ -95,9 +92,7 @@ function selected_pts = seleccionar_puntos_shift(data)
             return;
         end
 
-        % ==========================================
         % SHIFT → seleccionar punto cercano al rayo
-        % ==========================================
         if strcmp(sel,'extend')
             rot.Enable = 'off';
 
@@ -132,9 +127,7 @@ function selected_pts = seleccionar_puntos_shift(data)
             return;
         end
 
-        % ==========================================
-        % CTRL → selección por paralelepípedo
-        % ==========================================
+        % CTRL → selección por paralelepipedo
         if strcmp(sel,'alt')
             rot.Enable = 'off';
 
