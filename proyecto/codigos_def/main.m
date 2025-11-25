@@ -72,7 +72,7 @@ if tipo == 'C'
 
 elseif tipo == 'S'
     %interpolacion para superficie
-    [pps, superficie] = superficie_interpoladora(x, y, z);
+    [Xfun, Yfun, Zfun, u, v] = superficie_interpoladora(puntos_trabajar);
 
     %evaluar en una malla
     [Uq, Vq] = meshgrid(linspace(0, 1, 50), linspace(0, 1, 50));
